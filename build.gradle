@@ -1,9 +1,9 @@
 plugins {
     id 'java'
+    id 'com.github.amkay.gitflow'
 }
 
 group 'o-hayato'
-version '0.0.1'
 
 sourceCompatibility = 1.8
 
