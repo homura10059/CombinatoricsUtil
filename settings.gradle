@@ -1,0 +1,18 @@
+pluginManagement {
+    repositories {
+        maven {
+            url ('https://jcenter.bintray.com')
+        }
+        gradlePluginPortal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'com.github.amkay.gitflow') {
+                useModule 'com.github.amkay:gradle-gitflow:0.2.0'
+            }
+        }
+    }
+}
+
+rootProject.name = 'combinatorics-util'
+
