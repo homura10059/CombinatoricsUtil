@@ -8,16 +8,10 @@ import java.util.List;
  *
  * @param <T> target class for Combinatorics.
  */
-public class CombinatoricsUtil<T> {
+public class CombinatoricsUtil<T> implements Combinatorics<T>{
 
         /**
-         * Combination.<BR>
-         * nCr -> factorial(n) / (factorial(r) * factorial(n-r)).<BR>
-         *
-         * This class return all combination in list.
-         * @param objects all items
-         * @param r number of choice
-         * @return all combination in objects
+         * {@inheritDoc}.
          */
         public List<List<T>> combination(List<T> objects, int r) {
                 int n = objects.size();
