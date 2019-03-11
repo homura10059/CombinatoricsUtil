@@ -10,6 +10,9 @@ pluginManagement {
             if (requested.id.id == 'com.github.amkay.gitflow') {
                 useModule 'com.github.amkay:gradle-gitflow:0.2.0'
             }
+            if (requested.id.id == 'com.jfrog.bintray') {
+                useModule 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.1'
+            }
         }
     }
 }

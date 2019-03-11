@@ -1,6 +1,8 @@
 plugins {
     id 'java'
+    id 'maven-publish'
     id 'com.github.amkay.gitflow'
+    id 'com.jfrog.bintray'
 }
 
 group 'o-hayato'
@@ -20,4 +22,52 @@ test {
     useJUnitPlatform {
         includeEngines 'junit-jupiter'
     }
+}
+
+def siteUrl = 'https://github.com/o-hayato/CombinatoricsUtil'
+def githubUrl = 'https://github.com/o-hayato/CombinatoricsUtil'
+
+
+bintray {
+    user = project.hasProperty('bintray_user') ? bintray_user : ''
+    key = project.hasProperty('bintray_key') ? bintray_key : ''
+    publications = ['MyPublication']
+    filesSpec {
+        from 'build/libs'
+        into '.'
+    }
+    pkg {
+        repo = 'maven'
+        name = project.group + '.' + project.name
+        licenses = ['MIT']
+        websiteUrl = siteUrl
+        vcsUrl = githubUrl + '.git'
+        issueTrackerUrl = githubUrl + '/issues'
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+        }
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            groupId project.group
+            artifactId project.name
+            version project.version
+        }
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10.3'
 }
